@@ -32,6 +32,7 @@ metadata {
         importUrl: "https://raw.githubusercontent.com/ktriponis/Hubitat-Elgato-Key-Light/main/Elgato-Key-Light.groovy"
     ) {
         capability "Light"
+        capability "Switch"
         capability "Polling"
         capability "Refresh"
         capability "SwitchLevel"
@@ -54,7 +55,7 @@ def updated() {
 }
 
 def on() {
-    updateLightOptions(witchValue: "on")
+    updateLightOptions(switchValue: "on")
 }
 
 def off() {
