@@ -140,7 +140,7 @@ private static fromSwitchValue(switchValue) {
     switchValue == "on" ? 1 : 0
 }
 
-private static toTemperatureValue(int temperature) {
+private static toTemperatureValue(temperature) {
     def temp = 999249.2902569509 * temperature**-0.9998360126977142
     temp = Math.round(temp + (50 - (temp % 50 ?: 50)))
     if (temp < 2900) return 2900
@@ -148,7 +148,7 @@ private static toTemperatureValue(int temperature) {
     return temp
 }
 
-private static fromTemperatureValue(int temperatureValue) {
+private static fromTemperatureValue(temperatureValue) {
     def val = Math.round(1068894.4204689409 * temperatureValue**-1.0074488102192827)
     if (val < 143) return 143
     if (val > 344) return 344
