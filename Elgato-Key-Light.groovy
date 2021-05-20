@@ -81,7 +81,7 @@ def refresh() {
             state.numberOfLights = options.numberOfLights
             state.switch = toSwitchValue(options.lights[0].on)
             state.level = options.lights[0].brightness
-            state.colorTemperature = options.lights[0].temperature
+            state.colorTemperature = toTemperatureValue(options.lights[0].temperature)
 
             sendEvent name: "numberOfLights", value: state.numberOfLights
             sendEvent name: "switch", value: state.switch
@@ -126,7 +126,7 @@ private def lightOptions(opts) {
             [
                 on         : fromSwitchValue(opts.switchValue ?: state.switch),
                 brightness : opts.level ?: state.level,
-                temperature: opts.colortemperature ?: state.colorTemperature
+                temperature: fromTemperatureValue(opts.colortemperature ?: state.colorTemperature)
             ]
         ]
     ])
@@ -138,4 +138,13 @@ private static toSwitchValue(lightOn) {
 
 private static fromSwitchValue(switchValue) {
     switchValue == "on" ? 1 : 0
+}
+
+private static toTemperatureValue(int temperature) {
+    def temp = 999249.2902569509 * temperature**-0.9998360126977142
+    temp + (50 - (temp % 50 ?: 50))
+}
+
+private static fromTemperatureValue(int temperatureValue) {
+    Math.round(1068894.4204689409 * temperatureValue**-1.0074488102192827)
 }
