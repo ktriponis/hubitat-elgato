@@ -4,7 +4,11 @@ This is a simple driver for Elgato Key Light.
 
 ## Installation
 
-* Import raw driver code from [Elgato-Key-Light.groovy](https://raw.githubusercontent.com/ktriponis/Hubitat-Elgato-Key-Light/main/Elgato-Key-Light.groovy) file
+Just use [Hubitat Package Manager](https://hubitatpackagemanager.hubitatcommunity.com/installPkg.html)!
+
+### If you insist on using manual approach
+
+* Import raw driver code from [Elgato-Key-Light.groovy](https://raw.githubusercontent.com/ktriponis/Hubitat-Elgato-Key-Light/main/drivers/Elgato-Key-Light.groovy) file
 * Create a new virtual device using the driver
 * Specify IP address of the device (might need to check router config)
 * Enjoy!

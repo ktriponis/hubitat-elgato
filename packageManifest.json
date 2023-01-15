@@ -1,0 +1,16 @@
+{
+  "packageName": "Elgato Integrations",
+  "author": "Kestutis Triponis",
+  "version": "1.0.1",
+  "minimumHEVersion": "2.1.9",
+  "dateReleased": "2021-05-20",
+  "drivers": [
+    {
+      "id": "9b3a9769-d268-4841-b937-a6db718377ea",
+      "name": "Elgato Key Light",
+      "namespace": "elgato",
+      "location": "https://raw.githubusercontent.com/ktriponis/hubitat-elgato/main/drivers/Elgato-Key-Light.groovy",
+      "required": false
+    }
+  ]
+}
