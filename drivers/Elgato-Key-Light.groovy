@@ -41,6 +41,12 @@ metadata {
         attribute "numberOfLights", "number"
     }
     preferences {
+    	input name: "pollIntervalSec", 
+    		type: "enum", 
+    		title: "Polling Interval (seconds)", 
+          	options: ["5", "15", "30", "60", "Disabled"], 
+          	defaultValue: "Disabled", 
+          	required: false
         input name: "ip",
             type: "string",
             title: "Key Light IP Address:",
@@ -50,6 +56,10 @@ metadata {
 }
 
 def updated() {
+    unschedule()
+
+    startPolling()
+    
     refresh()
     getAccessoryInfo()
 }
@@ -72,6 +82,21 @@ def setColorTemperature(colortemperature, level = null, transitionTime = 0) {
 
 def poll() {
     refresh()
+}
+
+def startPolling() {
+    if (pollIntervalSec && pollIntervalSec != "Disabled") {
+        Integer interval = pollIntervalSec.toInteger()
+        log.debug "Scheduling refresh every ${interval} seconds"
+        runIn(interval, scheduledRefresh)
+    } else {
+        log.info "Polling disabled"
+    }
+}
+
+def scheduledRefresh() {
+    refresh()
+    startPolling() 
 }
 
 def refresh() {
